@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8d3f856903bf49bfafb7ba402acdbc08" Name="Diagram1">
+        <EntityTypeShape EntityType="mydbModel.conductor" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mydbModel.dispatcher" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="mydbModel.driver" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="mydbModel.route" Width="1.5" PointX="0.75" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="mydbModel.trip" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="mydbModel.fk_Trip_conductor1" ManuallyRouted="false" />
+        <AssociationConnector Association="mydbModel.fk_Trip_Dispatcher2" ManuallyRouted="false" />
+        <AssociationConnector Association="mydbModel.fk_trip_driver1" ManuallyRouted="false" />
+        <AssociationConnector Association="mydbModel.fk_Trip_Route" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

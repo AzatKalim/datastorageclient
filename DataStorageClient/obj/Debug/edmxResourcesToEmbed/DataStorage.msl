@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="mydbModelStoreContainer" CdmEntityContainer="dataStorageEntity">
+    <EntitySetMapping Name="conductor">
+      <EntityTypeMapping TypeName="mydbModel.conductor">
+        <MappingFragment StoreEntitySet="conductor">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="trip_count" ColumnName="trip_count" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="dispatcher">
+      <EntityTypeMapping TypeName="mydbModel.dispatcher">
+        <MappingFragment StoreEntitySet="dispatcher">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="trip_count" ColumnName="trip_count" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="driver">
+      <EntityTypeMapping TypeName="mydbModel.driver">
+        <MappingFragment StoreEntitySet="driver">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="trip_count" ColumnName="trip_count" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="route">
+      <EntityTypeMapping TypeName="mydbModel.route">
+        <MappingFragment StoreEntitySet="route">
+          <ScalarProperty Name="route_number" ColumnName="route_number" />
+          <ScalarProperty Name="trip_count" ColumnName="trip_count" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="trip">
+      <EntityTypeMapping TypeName="mydbModel.trip">
+        <MappingFragment StoreEntitySet="trip">
+          <ScalarProperty Name="stop_count" ColumnName="stop_count" />
+          <ScalarProperty Name="Route_route_number" ColumnName="Route_route_number" />
+          <ScalarProperty Name="Dispatcher_id" ColumnName="Dispatcher_id" />
+          <ScalarProperty Name="conductor_id" ColumnName="conductor_id" />
+          <ScalarProperty Name="start_time" ColumnName="start_time" />
+          <ScalarProperty Name="finish_time" ColumnName="finish_time" />
+          <ScalarProperty Name="passenger_count" ColumnName="passenger_count" />
+          <ScalarProperty Name="driver_id" ColumnName="driver_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

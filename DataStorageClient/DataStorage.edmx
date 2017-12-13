@@ -1,0 +1,334 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="mydbModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="mydbModelStoreContainer">
+          <EntitySet Name="conductor" EntityType="mydbModel.Store.conductor" store:Type="Tables" Schema="mydb" />
+          <EntitySet Name="dispatcher" EntityType="mydbModel.Store.dispatcher" store:Type="Tables" Schema="mydb" />
+          <EntitySet Name="driver" EntityType="mydbModel.Store.driver" store:Type="Tables" Schema="mydb" />
+          <EntitySet Name="route" EntityType="mydbModel.Store.route" store:Type="Tables" Schema="mydb" />
+          <EntitySet Name="trip" EntityType="mydbModel.Store.trip" store:Type="Tables" Schema="mydb" />
+          <AssociationSet Name="fk_Trip_conductor1" Association="mydbModel.Store.fk_Trip_conductor1">
+            <End Role="conductor" EntitySet="conductor" />
+            <End Role="trip" EntitySet="trip" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Trip_Dispatcher2" Association="mydbModel.Store.fk_Trip_Dispatcher2">
+            <End Role="dispatcher" EntitySet="dispatcher" />
+            <End Role="trip" EntitySet="trip" />
+          </AssociationSet>
+          <AssociationSet Name="fk_trip_driver1" Association="mydbModel.Store.fk_trip_driver1">
+            <End Role="driver" EntitySet="driver" />
+            <End Role="trip" EntitySet="trip" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Trip_Route" Association="mydbModel.Store.fk_Trip_Route">
+            <End Role="route" EntitySet="route" />
+            <End Role="trip" EntitySet="trip" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="conductor">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="45" />
+          <Property Name="trip_count" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="dispatcher">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="45" />
+          <Property Name="trip_count" Type="int" />
+        </EntityType>
+        <EntityType Name="driver">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="255" />
+          <Property Name="trip_count" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="route">
+          <Key>
+            <PropertyRef Name="route_number" />
+          </Key>
+          <Property Name="route_number" Type="int" Nullable="false" />
+          <Property Name="trip_count" Type="int" />
+        </EntityType>
+        <EntityType Name="trip">
+          <Key>
+            <PropertyRef Name="Route_route_number" />
+            <PropertyRef Name="Dispatcher_id" />
+            <PropertyRef Name="conductor_id" />
+            <PropertyRef Name="driver_id" />
+          </Key>
+          <Property Name="stop_count" Type="int" />
+          <Property Name="Route_route_number" Type="int" Nullable="false" />
+          <Property Name="Dispatcher_id" Type="int" Nullable="false" />
+          <Property Name="conductor_id" Type="int" Nullable="false" />
+          <Property Name="start_time" Type="datetime" />
+          <Property Name="finish_time" Type="datetime" />
+          <Property Name="passenger_count" Type="int" />
+          <Property Name="driver_id" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="fk_Trip_conductor1">
+          <End Role="conductor" Type="mydbModel.Store.conductor" Multiplicity="1" />
+          <End Role="trip" Type="mydbModel.Store.trip" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="conductor">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="trip">
+              <PropertyRef Name="conductor_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Trip_Dispatcher2">
+          <End Role="dispatcher" Type="mydbModel.Store.dispatcher" Multiplicity="1" />
+          <End Role="trip" Type="mydbModel.Store.trip" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dispatcher">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="trip">
+              <PropertyRef Name="Dispatcher_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_trip_driver1">
+          <End Role="driver" Type="mydbModel.Store.driver" Multiplicity="1" />
+          <End Role="trip" Type="mydbModel.Store.trip" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="driver">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="trip">
+              <PropertyRef Name="driver_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Trip_Route">
+          <End Role="route" Type="mydbModel.Store.route" Multiplicity="1" />
+          <End Role="trip" Type="mydbModel.Store.trip" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="route">
+              <PropertyRef Name="route_number" />
+            </Principal>
+            <Dependent Role="trip">
+              <PropertyRef Name="Route_route_number" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="mydbModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="dataStorageEntity" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="conductor" EntityType="mydbModel.conductor" />
+          <EntitySet Name="dispatcher" EntityType="mydbModel.dispatcher" />
+          <EntitySet Name="driver" EntityType="mydbModel.driver" />
+          <EntitySet Name="route" EntityType="mydbModel.route" />
+          <EntitySet Name="trip" EntityType="mydbModel.trip" />
+          <AssociationSet Name="fk_Trip_conductor1" Association="mydbModel.fk_Trip_conductor1">
+            <End Role="conductor" EntitySet="conductor" />
+            <End Role="trip" EntitySet="trip" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Trip_Dispatcher2" Association="mydbModel.fk_Trip_Dispatcher2">
+            <End Role="dispatcher" EntitySet="dispatcher" />
+            <End Role="trip" EntitySet="trip" />
+          </AssociationSet>
+          <AssociationSet Name="fk_trip_driver1" Association="mydbModel.fk_trip_driver1">
+            <End Role="driver" EntitySet="driver" />
+            <End Role="trip" EntitySet="trip" />
+          </AssociationSet>
+          <AssociationSet Name="fk_Trip_Route" Association="mydbModel.fk_Trip_Route">
+            <End Role="route" EntitySet="route" />
+            <End Role="trip" EntitySet="trip" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="conductor">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
+          <Property Name="trip_count" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="trip" Relationship="mydbModel.fk_Trip_conductor1" FromRole="conductor" ToRole="trip" />
+        </EntityType>
+        <EntityType Name="dispatcher">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="45" Unicode="false" FixedLength="false" />
+          <Property Name="trip_count" Type="Int32" />
+          <NavigationProperty Name="trip" Relationship="mydbModel.fk_Trip_Dispatcher2" FromRole="dispatcher" ToRole="trip" />
+        </EntityType>
+        <EntityType Name="driver">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
+          <Property Name="trip_count" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="trip" Relationship="mydbModel.fk_trip_driver1" FromRole="driver" ToRole="trip" />
+        </EntityType>
+        <EntityType Name="route">
+          <Key>
+            <PropertyRef Name="route_number" />
+          </Key>
+          <Property Name="route_number" Type="Int32" Nullable="false" />
+          <Property Name="trip_count" Type="Int32" />
+          <NavigationProperty Name="trip" Relationship="mydbModel.fk_Trip_Route" FromRole="route" ToRole="trip" />
+        </EntityType>
+        <EntityType Name="trip">
+          <Key>
+            <PropertyRef Name="Route_route_number" />
+            <PropertyRef Name="Dispatcher_id" />
+            <PropertyRef Name="conductor_id" />
+            <PropertyRef Name="driver_id" />
+          </Key>
+          <Property Name="stop_count" Type="Int32" />
+          <Property Name="Route_route_number" Type="Int32" Nullable="false" />
+          <Property Name="Dispatcher_id" Type="Int32" Nullable="false" />
+          <Property Name="conductor_id" Type="Int32" Nullable="false" />
+          <Property Name="start_time" Type="DateTime" />
+          <Property Name="finish_time" Type="DateTime" />
+          <Property Name="passenger_count" Type="Int32" />
+          <Property Name="driver_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="conductor" Relationship="mydbModel.fk_Trip_conductor1" FromRole="trip" ToRole="conductor" />
+          <NavigationProperty Name="dispatcher" Relationship="mydbModel.fk_Trip_Dispatcher2" FromRole="trip" ToRole="dispatcher" />
+          <NavigationProperty Name="driver" Relationship="mydbModel.fk_trip_driver1" FromRole="trip" ToRole="driver" />
+          <NavigationProperty Name="route" Relationship="mydbModel.fk_Trip_Route" FromRole="trip" ToRole="route" />
+        </EntityType>
+        <Association Name="fk_Trip_conductor1">
+          <End Role="conductor" Type="mydbModel.conductor" Multiplicity="1" />
+          <End Role="trip" Type="mydbModel.trip" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="conductor">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="trip">
+              <PropertyRef Name="conductor_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Trip_Dispatcher2">
+          <End Role="dispatcher" Type="mydbModel.dispatcher" Multiplicity="1" />
+          <End Role="trip" Type="mydbModel.trip" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dispatcher">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="trip">
+              <PropertyRef Name="Dispatcher_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_trip_driver1">
+          <End Role="driver" Type="mydbModel.driver" Multiplicity="1" />
+          <End Role="trip" Type="mydbModel.trip" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="driver">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="trip">
+              <PropertyRef Name="driver_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_Trip_Route">
+          <End Role="route" Type="mydbModel.route" Multiplicity="1" />
+          <End Role="trip" Type="mydbModel.trip" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="route">
+              <PropertyRef Name="route_number" />
+            </Principal>
+            <Dependent Role="trip">
+              <PropertyRef Name="Route_route_number" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="mydbModelStoreContainer" CdmEntityContainer="dataStorageEntity">
+          <EntitySetMapping Name="conductor">
+            <EntityTypeMapping TypeName="mydbModel.conductor">
+              <MappingFragment StoreEntitySet="conductor">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="trip_count" ColumnName="trip_count" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="dispatcher">
+            <EntityTypeMapping TypeName="mydbModel.dispatcher">
+              <MappingFragment StoreEntitySet="dispatcher">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="trip_count" ColumnName="trip_count" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="driver">
+            <EntityTypeMapping TypeName="mydbModel.driver">
+              <MappingFragment StoreEntitySet="driver">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="trip_count" ColumnName="trip_count" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="route">
+            <EntityTypeMapping TypeName="mydbModel.route">
+              <MappingFragment StoreEntitySet="route">
+                <ScalarProperty Name="route_number" ColumnName="route_number" />
+                <ScalarProperty Name="trip_count" ColumnName="trip_count" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="trip">
+            <EntityTypeMapping TypeName="mydbModel.trip">
+              <MappingFragment StoreEntitySet="trip">
+                <ScalarProperty Name="stop_count" ColumnName="stop_count" />
+                <ScalarProperty Name="Route_route_number" ColumnName="Route_route_number" />
+                <ScalarProperty Name="Dispatcher_id" ColumnName="Dispatcher_id" />
+                <ScalarProperty Name="conductor_id" ColumnName="conductor_id" />
+                <ScalarProperty Name="start_time" ColumnName="start_time" />
+                <ScalarProperty Name="finish_time" ColumnName="finish_time" />
+                <ScalarProperty Name="passenger_count" ColumnName="passenger_count" />
+                <ScalarProperty Name="driver_id" ColumnName="driver_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

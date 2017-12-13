@@ -1,0 +1,12 @@
+C:\Users\Азат\Desktop\DataStorageClient\DataStorageClient\bin\Debug\DataStorageClient.exe.config
+C:\Users\Азат\Desktop\DataStorageClient\DataStorageClient\bin\Debug\DataStorageClient.exe
+C:\Users\Азат\Desktop\DataStorageClient\DataStorageClient\bin\Debug\DataStorageClient.pdb
+C:\Users\Азат\Desktop\DataStorageClient\DataStorageClient\bin\Debug\EntityFramework.dll
+C:\Users\Азат\Desktop\DataStorageClient\DataStorageClient\bin\Debug\EntityFramework.xml
+C:\Users\Азат\Desktop\DataStorageClient\DataStorageClient\obj\Debug\DataStorageClient.csprojResolveAssemblyReference.cache
+C:\Users\Азат\Desktop\DataStorageClient\DataStorageClient\obj\Debug\DataStorageClient.MainForm.resources
+C:\Users\Азат\Desktop\DataStorageClient\DataStorageClient\obj\Debug\DataStorageClient.Properties.Resources.resources
+C:\Users\Азат\Desktop\DataStorageClient\DataStorageClient\obj\Debug\DataStorageClient.csproj.GenerateResource.Cache
+C:\Users\Азат\Desktop\DataStorageClient\DataStorageClient\obj\Debug\DataStorageClient.exe
+C:\Users\Азат\Desktop\DataStorageClient\DataStorageClient\obj\Debug\DataStorageClient.pdb
+C:\Users\Азат\Desktop\DataStorageClient\DataStorageClient\obj\Debug\DataStorageClient.DriverForm.resources
