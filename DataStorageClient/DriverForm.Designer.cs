@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Profit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TripCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PassCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.driverComboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -36,9 +39,9 @@
             this.label3 = new System.Windows.Forms.Label();
             this.stopComboBox = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.Profit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TripCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PassCount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.routeComboBox = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -54,6 +57,24 @@
             this.dataGridView1.Size = new System.Drawing.Size(500, 103);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // Profit
+            // 
+            this.Profit.HeaderText = "Прибыль";
+            this.Profit.Name = "Profit";
+            this.Profit.ReadOnly = true;
+            // 
+            // TripCount
+            // 
+            this.TripCount.HeaderText = "Число рейсов";
+            this.TripCount.Name = "TripCount";
+            this.TripCount.ReadOnly = true;
+            // 
+            // PassCount
+            // 
+            this.PassCount.HeaderText = "Число пассажиров";
+            this.PassCount.Name = "PassCount";
+            this.PassCount.ReadOnly = true;
             // 
             // driverComboBox
             // 
@@ -109,37 +130,49 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(437, 34);
+            this.button1.Location = new System.Drawing.Point(575, 109);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(154, 25);
             this.button1.TabIndex = 7;
-            this.button1.Text = "ОК";
+            this.button1.Text = "По водителю";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // Profit
+            // routeComboBox
             // 
-            this.Profit.HeaderText = "Прибыль";
-            this.Profit.Name = "Profit";
-            this.Profit.ReadOnly = true;
+            this.routeComboBox.FormattingEnabled = true;
+            this.routeComboBox.Location = new System.Drawing.Point(507, 34);
+            this.routeComboBox.Name = "routeComboBox";
+            this.routeComboBox.Size = new System.Drawing.Size(147, 21);
+            this.routeComboBox.TabIndex = 8;
             // 
-            // TripCount
+            // label4
             // 
-            this.TripCount.HeaderText = "Число рейсов";
-            this.TripCount.Name = "TripCount";
-            this.TripCount.ReadOnly = true;
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(424, 37);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(52, 13);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "Маршрут";
             // 
-            // PassCount
+            // button2
             // 
-            this.PassCount.HeaderText = "Число пассажиров";
-            this.PassCount.Name = "PassCount";
-            this.PassCount.ReadOnly = true;
+            this.button2.Location = new System.Drawing.Point(594, 78);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(134, 24);
+            this.button2.TabIndex = 10;
+            this.button2.Text = "По маршруту";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // DriverForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(790, 261);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.routeComboBox);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.stopComboBox);
             this.Controls.Add(this.label3);
@@ -170,5 +203,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Profit;
         private System.Windows.Forms.DataGridViewTextBoxColumn TripCount;
         private System.Windows.Forms.DataGridViewTextBoxColumn PassCount;
+        private System.Windows.Forms.ComboBox routeComboBox;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button button2;
     }
 }

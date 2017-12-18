@@ -29,6 +29,18 @@ namespace DataStorageClient
             return null;
         }
 
+        private route GetRoute(int routeNumber)
+        {
+            foreach (var item in context.route)
+            {
+                if (item.route_number == routeNumber)
+                {
+                    return item;
+                }
+            }
+            return null;
+        }
+
         public List<string> GetDriversNames()
         {
             List<string> result = new List<string>();
@@ -131,6 +143,35 @@ namespace DataStorageClient
             foreach (var item in context.trip)
             {
                 if(item.driver.name==driver)
+                {
+                    sum += (int)item.passenger_count * TRIP_PRICE;
+                }
+            }
+            return sum;
+        }
+
+        public Tuple<int, int, int>GetRouteProfit(int routeNum, DateTime start, DateTime stop)
+        {
+            route route = GetRoute(routeNum);
+            int tripCount = 0;
+            int passCount = 0;
+            foreach (var item in context.trip)
+            {
+                if (item.route.route_number == routeNum && item.start_time >= start && item.finish_time <= stop)
+                {
+                    tripCount++;
+                    passCount += (int)item.passenger_count;
+                }
+            }
+            return new Tuple<int, int, int>(passCount * TICKET_PRICE - TRIP_PRICE * tripCount, tripCount, passCount);
+        }
+
+        public int GetRouteProfit(int route)
+        {
+            int sum = 0;
+            foreach (var item in context.trip)
+            {
+                if (item.route.route_number == route)
                 {
                     sum += (int)item.passenger_count * TRIP_PRICE;
                 }
